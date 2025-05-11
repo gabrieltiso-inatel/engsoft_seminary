@@ -7,18 +7,18 @@ services:
             - .:/app
         networks:
             - seminary_network
-    
+
     php-web:
         build:
             context: .
-            dockerfile: local/Dockerfile.web
+            dockerfile: ./local/Dockerfile.web
         volumes:
-        - ./public:/var/www/html
+            - .:/var/www/html
         expose:
             - "9000"
         networks:
             - seminary_network
-
+    
     nginx:
         image: nginx
         ports:
