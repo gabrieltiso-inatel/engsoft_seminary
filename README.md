@@ -7,6 +7,10 @@ utilizando WebSockets para comunicação entre os jogadores durante o jogo. É u
 simples, mas que utiliza conceitos de Engenharia de Software de forma a tornar o projeto
 mais robusto e escalável.
 
+### Arquitetura geral
+
+![Arquitetura geral](/assets/php-tic-tac-toe.png)
+
 A aplicação foi desenvolvida em **PHP**, utilizando as seguintes ferramentas:
 - **PHPUnit**: Realização de testes unitários e testes mock.
 - **Jenkins**: Servidor de CI (Continuous Integration) responsável pelo
