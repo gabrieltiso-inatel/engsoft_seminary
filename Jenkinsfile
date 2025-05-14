@@ -7,6 +7,7 @@ pipeline {
                 sh 'chmod +x ./scripts/install_composer.sh'
                 sh './scripts/install_composer.sh'
                 sh 'php composer.phar update'
+                sh 'php composer.phar dump-autoload'
                 sh 'ls -la'
             }
         }
