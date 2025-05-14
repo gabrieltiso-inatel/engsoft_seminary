@@ -9,11 +9,17 @@ class Room
     private ?Player $playerOne = null;
     private ?Player $playerTwo = null;
 
-    public function __construct(string $name)
+    private function __construct() {}
+
+    public function id(): int
     {
-        $this->name = $name;
+        return $this->id;
     }
 
+    public function name(): string
+    {
+        return $this->name;
+    }
 
     public function addPlayer(Player $player): void
     {
@@ -42,5 +48,20 @@ class Room
     public function playerTwo(): ?Player
     {
         return $this->playerTwo;
+    }
+
+    public static function createSimple(string $name): self
+    {
+        $room = new self();
+        $room->name = $name;
+        return $room;
+    }
+
+    public static function create(int $id, string $name): self
+    {
+        $room = new self();
+        $room->id = $id;
+        $room->name = $name;
+        return $room;
     }
 }

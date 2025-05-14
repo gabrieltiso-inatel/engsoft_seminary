@@ -4,6 +4,11 @@
             "App\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests"
+        }
+    },
     "require": {
         "cboden/ratchet": "^0.4",
         "phpunit/phpunit": "^10.0"

@@ -7,8 +7,30 @@ class Player
     private int $id;
     private string $name;
 
-    public function __construct(string $name)
+    private function __construct() {}
+
+    public function id(): int
     {
-        $this->name = $name;
+        return $this->id;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public static function createSimple(string $name): self
+    {
+        $player = new self();
+        $player->name = $name;
+        return $player;
+    }
+
+    public static function create(int $id, string $name): self
+    {
+        $player = new self();
+        $player->id = $id;
+        $player->name = $name;
+        return $player;
     }
 }

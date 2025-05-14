@@ -10,29 +10,29 @@ final class RoomTest extends TestCase
 
     public function testAddPlayerOne()
     {
-        $room = new Room("Test Room");
-        $player = new Player("Player 1");
+        $room = Room::createSimple("Test Room");
+        $player = Player::createSimple("Player 1");
         $room->addPlayer($player);
         $this->assertEquals($player, $room->playerOne());
     }
 
     public function testAddPlayerTwo()
     {
-        $room = new Room("Test Room");
-        $player1 = new Player("Player 1");
+        $room = Room::createSimple("Test Room");
+        $player1 = Player::createSimple("Player 1");
         $room->addPlayer($player1);
 
-        $player2 = new Player("Player 2");
+        $player2 = Player::createSimple("Player 2");
         $room->addPlayer($player2);
         $this->assertEquals($player2, $room->playerTwo());
     }
 
     public function testRommAvailable()
     {
-        $room = new Room("Test Room");
+        $room = Room::createSimple("Test Room");
         $this->assertTrue($room->available());
 
-        $player1 = new Player("Player 1");
+        $player1 = Player::createSimple("Player 1");
         $room->addPlayer($player1);
 
         $this->assertTrue($room->available());
@@ -40,9 +40,9 @@ final class RoomTest extends TestCase
 
     public function testCantAddPlayerWhenRoomIsFull()
     {
-        $room = new Room("Test Room");
-        $player1 = new Player("Player 1");
-        $player2 = new Player("Player 2");
+        $room = Room::createSimple("Test Room");
+        $player1 = Player::createSimple("Player 1");
+        $player2 = Player::createSimple("Player 2");
         $room->addPlayer($player1);
         $room->addPlayer($player2);
 
@@ -53,9 +53,9 @@ final class RoomTest extends TestCase
 
     public function testCanStartNewGame()
     {
-        $room = new Room("Test Room");
-        $player1 = new Player("Player 1");
-        $player2 = new Player("Player 2");
+        $room = Room::createSimple("Test Room");
+        $player1 = Player::createSimple("Player 1");
+        $player2 = Player::createSimple("Player 2");
         $room->addPlayer($player1);
         $room->addPlayer($player2);
 
@@ -64,14 +64,14 @@ final class RoomTest extends TestCase
 
     public function testCantStartNewGameWhenRoomIsEmpty()
     {
-        $room = new Room("Test Room");
+        $room = Room::createSimple("Test Room");
         $this->assertFalse($room->gameStartAllowed());
     }
 
     public function testCantStartNewGameWhenRoomIsPartiallyFilled()
     {
-        $room = new Room("Test Room");
-        $player1 = new Player("Player 1");
+        $room = Room::createSimple("Test Room");
+        $player1 = Player::createSimple("Player 1");
         $room->addPlayer($player1);
 
         $this->assertFalse($room->gameStartAllowed());
@@ -79,9 +79,9 @@ final class RoomTest extends TestCase
 
     public function testCanStartNewGameWhenRoomIsFull()
     {
-        $room = new Room("Test Room");
-        $player1 = new Player("Player 1");
-        $player2 = new Player("Player 2");
+        $room = Room::createSimple("Test Room");
+        $player1 = Player::createSimple("Player 1");
+        $player2 = Player::createSimple("Player 2");
         $room->addPlayer($player1);
         $room->addPlayer($player2);
 
