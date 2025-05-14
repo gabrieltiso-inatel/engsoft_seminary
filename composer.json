@@ -6,6 +6,6 @@
     },
     "require": {
         "cboden/ratchet": "^0.4",
-        "phpunit/phpunit": "^12.1"
+        "phpunit/phpunit": "^10.0"
     }
 }

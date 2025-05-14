@@ -5,7 +5,7 @@ USER root
 WORKDIR /var/jenkins_home 
 
 RUN apt-get update -y && \
-    apt-get install -y wget php php-mbstring php-xml php-dom php-xmlwriter
+    apt-get install -y wget php php-mbstring php-xml php-dom php-xmlwriter php-curl
 
 RUN wget -O phpunit.phar https://phar.phpunit.de/phpunit-10.phar && \
     chmod +x phpunit.phar && \
