@@ -6,6 +6,7 @@ pipeline {
             steps {
                 sh 'chmod +x ./scripts/install_composer.sh'
                 sh './scripts/install_composer.sh'
+                sh 'ls -la'
             }
         }
 
