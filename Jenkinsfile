@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh './scripts/install_composer.sh'
                 sh "composer install"
             }
         }
