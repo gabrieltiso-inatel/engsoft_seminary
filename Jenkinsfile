@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Tests') {
             steps {
-                sh 'chmod +x ./scripts/run_tests.sh'
-                sh './scripts/run_tests.sh'
+                sh 'phpunit tests --testdox --colors=always --coverage-html coverage --stop-on-failure'
+                // sh './scripts/run_tests.sh'
             }
         }
     }
