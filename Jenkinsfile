@@ -2,10 +2,17 @@ pipeline {
     agent any
 
     stages {
+        stage('Build') {
+            steps {
+                sh 'chmod +x ./scripts/install_composer.sh'
+                sh './scripts/install_composer.sh'
+            }
+        }
+
         stage('Tests') {
             steps {
-                sh 'phpunit tests --testdox --colors=always --coverage-html coverage --stop-on-failure'
-                // sh './scripts/run_tests.sh'
+                sh 'chmod +x ./scripts/run_tests.sh'
+                sh './scripts/run_tests.sh'
             }
         }
     }
