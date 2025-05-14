@@ -1,3 +1,3 @@
 #!/bin/sh
 
-phpunit tests 
+vendor/bin/phpunit --testdox
