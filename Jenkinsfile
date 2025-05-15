@@ -10,13 +10,12 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'ls -la'
+                sh 'php cimposer.phar install'
             }
         }
 
         stage('Tests') {
             steps {
-                sh 'echo "Running tests..."'
                 sh 'vendor/bin/phpunit --testdox'
             }
         }
