@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'php cimposer.phar install'
+                sh 'php composer.phar install'
             }
         }
 
