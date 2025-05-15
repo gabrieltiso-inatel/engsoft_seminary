@@ -2,8 +2,8 @@
 
 namespace App\Tests;
 
-use App\Infra\DB\Connection;
-use App\Infra\DB\RoomRepository;
+use App\Infra\Db\Connection;
+use App\Infra\Db\RoomRepository;
 use App\Models\Player;
 use PHPUnit\Framework\TestCase;
 
