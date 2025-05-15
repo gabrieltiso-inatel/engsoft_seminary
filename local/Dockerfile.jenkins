@@ -7,4 +7,7 @@ WORKDIR /var/jenkins_home
 RUN apt-get update -y && \
     apt-get install -y wget php php-mbstring php-xml php-dom php-xmlwriter php-curl
 
+COPY scripts/install_composer.sh ./
+RUN chmod +x ./install_composer.sh && ./install_composer.sh
+
 USER jenkins

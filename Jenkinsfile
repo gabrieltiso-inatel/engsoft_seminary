@@ -10,10 +10,6 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'echo "Building the project..."'
-                sh 'chmod +x ./scripts/install_composer.sh'
-                sh './scripts/install_composer.sh'
-                sh 'php composer.phar install'
                 sh 'ls -la'
             }
         }
@@ -21,8 +17,6 @@ pipeline {
         stage('Tests') {
             steps {
                 sh 'echo "Running tests..."'
-                sh 'ls -la'
-                sh 'php composer.phar install'
                 sh 'vendor/bin/phpunit --testdox'
             }
         }
