@@ -1,5 +1,5 @@
 <?php
-namespace App\Infra\DB;
+namespace App\Infra\Db;
 
 use App\Models\Room;
 
