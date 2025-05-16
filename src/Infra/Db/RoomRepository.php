@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Infra\Db;
 
+use App\Models\Player;
 use App\Models\Room;
 
 class RoomRepository
@@ -21,13 +23,30 @@ class RoomRepository
         return $result ? true : false;
     }
 
+
     public function getAllRooms()
     {
-        $stmt = $this->db->query('SELECT * FROM rooms');
+        $stmt = $this->db->query(
+            'SELECT r.*, 
+                p1.id as p1_id, p1.name as p1_name, 
+                p2.id as p2_id, p2.name as p2_name
+         FROM rooms r
+         LEFT JOIN players p1 ON r.player1_id = p1.id
+         LEFT JOIN players p2 ON r.player2_id = p2.id'
+        );
         $rooms = [];
 
         while ($row = $stmt->fetchArray(SQLITE3_ASSOC)) {
-            $rooms[] = Room::create($row['id'], $row['name']);
+            $room = Room::create($row['id'], $row['name']);
+            if ($row['p1_id']) {
+                $player1 = Player::create($row['p1_id'], $row['p1_name']);
+                $room->addPlayer($player1);
+            }
+            if ($row['p2_id']) {
+                $player2 = Player::create($row['p2_id'], $row['p2_name']);
+                $room->addPlayer($player2);
+            }
+            $rooms[] = $room;
         }
 
         return $rooms;
@@ -35,12 +54,29 @@ class RoomRepository
 
     public function getRoomById($id)
     {
-        $stmt = $this->db->prepare('SELECT * FROM rooms WHERE id = :id');
+        $stmt = $this->db->prepare(
+            'SELECT r.*, 
+                p1.id as p1_id, p1.name as p1_name, 
+                p2.id as p2_id, p2.name as p2_name
+         FROM rooms r
+         LEFT JOIN players p1 ON r.player1_id = p1.id
+         LEFT JOIN players p2 ON r.player2_id = p2.id
+         WHERE r.id = :id'
+        );
         $stmt->bindValue(':id', $id);
         $result = $stmt->execute();
 
         if ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-            return Room::create($row['id'], $row['name']);
+            $room = Room::create($row['id'], $row['name']);
+            if ($row['p1_id']) {
+                $player1 = Player::create($row['p1_id'], $row['p1_name']);
+                $room->addPlayer($player1);
+            }
+            if ($row['p2_id']) {
+                $player2 = Player::create($row['p2_id'], $row['p2_name']);
+                $room->addPlayer($player2);
+            }
+            return $room;
         }
 
         return null;
@@ -48,11 +84,6 @@ class RoomRepository
 
     public function updateRoom(Room $room)
     {
-        # print all the room properties
-        echo "Room ID: " . $room->id() . "\n";
-        echo "Room Name: " . $room->name() . "\n";
-        echo "Player 1 ID: " . ($room->playerOne() ? $room->playerOne()->id() : 'null') . "\n";
-
         $stmt = $this->db->prepare('UPDATE rooms SET name = :name, player1_id = :player1_id, player2_id = :player2_id WHERE id = :id');
         $stmt->bindValue(':name', $room->name());
         $stmt->bindValue(':player1_id', $room->playerOne() ? $room->playerOne()->id() : null);

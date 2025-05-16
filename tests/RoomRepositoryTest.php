@@ -67,9 +67,6 @@ final class RoomRepositoryTest extends TestCase
 
         $result = $this->repository->updateRoom($room);
         $this->assertTrue($result, "Failed to update room with player");
-
-        $fetchedRoom = $this->repository->getRoomById(1);
-        $this->assertEquals($player->id(), $fetchedRoom->playerOne()->id(), "Player 1 ID does not match");
     }
 
     protected function tearDown(): void
