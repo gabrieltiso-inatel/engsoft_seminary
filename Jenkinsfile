@@ -11,7 +11,7 @@ pipeline {
 
         stage('Tests') {
             steps {
-                sh './vendor/bin/phpunit --testdox --log-junit build/reports/results.xml'
+                sh './vendor/bin/phpunit --log-junit build/reports/results.xml'
             }
         }
     }
