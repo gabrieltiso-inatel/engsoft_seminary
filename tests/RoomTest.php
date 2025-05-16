@@ -1,4 +1,5 @@
 <?php
+namespace App\Tests;
 
 use App\Models\Player;
 use App\Models\Room;

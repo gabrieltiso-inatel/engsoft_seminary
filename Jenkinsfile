@@ -17,7 +17,6 @@ pipeline {
             steps {
                 sh 'mkdir -p build/reports'
                 sh './vendor/bin/phpunit --testdox --log-junit build/reports/report.xml'
-                sh 'cat build/reports/report.xml'
             }
         }
     }
