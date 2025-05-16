@@ -11,6 +11,7 @@ pipeline {
 
         stage('Tests') {
             steps {
+                sh 'mkdir build/reports'
                 sh './vendor/bin/phpunit --log-junit build/reports/results.xml'
                 sh 'ls -l build/reports/' 
             }
