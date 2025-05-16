@@ -17,14 +17,15 @@ pipeline {
             steps {
                 sh 'mkdir -p build/reports'
                 sh './vendor/bin/phpunit --testdox --log-junit build/reports/report.xml'
+                sh 'cat build/reports/report.xml'
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'build/reports/**/*', fingerprint: true
-            junit 'build/reports/results.xml'
+            archiveArtifacts artifacts: 'build/reports/report.xml', fingerprint: true
+            junit 'build/reports/report.xml'
         }
         failure {
             mail to: "${env.TEAM_EMAIL}",
