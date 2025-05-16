@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        TEAM_EMAIL = 'diego.rodrigues@ges.inatel.br'
+    }
+
     stages {
         stage('Build') {
             steps {
