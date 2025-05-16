@@ -13,13 +13,12 @@ pipeline {
             steps {
                 sh 'mkdir -p build/reports'
                 sh './vendor/bin/phpunit --log-junit build/reports/results.xml'
-                sh 'ls -l build/reports/' 
             }
         }
     }
     post {
         always {
-            junit 'build/reports/*.xml'
+            junit 'build/reports/results.xml'
         }
     }    
 }
